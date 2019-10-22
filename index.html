@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Gymnasiet Simulator</title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		img {
+			transition: transform 0.4s linear;
+			position: absolute;
+			top: 25%;
+			left: 35%;
+		}
+
+		.bar {
+			position: absolute;
+			width: 100px;
+			height: 350px;
+			left: 75%;
+			top: 40%;
+
+			background: linear-gradient(180deg,
+					#ff0000 2.08%,
+					rgba(255, 98, 98, 0.614583) 12.5%,
+					rgba(255, 255, 255, 0) 71.35%),
+				linear-gradient(180deg,
+					rgba(3, 255, 28, 0.988616) 0%,
+					#00ff19 32.29%,
+					rgba(135, 255, 147, 0.46875) 65.62%,
+					rgba(255, 255, 255, 0) 100%),
+				linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ff0000 100%);
+		}
+
+		.barLine {
+			width: 90%;
+			border: black 5px solid;
+			position: absolute;
+			transform: translateY(100px);
+			transition: transform 0.4s linear;
+		}
+
+		.Schedule {
+			display: flex;
+			font-size: 0.8rem;
+		}
+
+		.Schedule-Day>* {
+			padding: 2.5px;
+			border: solid 1px black;
+		}
+
+		.currentSubject {
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+	<img src="computer.png" class="computer" />
+	<div class="bar">
+		<div class="barLine"></div>
+	</div>
+
+	<div class="subjects"></div>
+	<div class="clock"></div>
+
+	<script type="module" src="index.js"></script>
+</body>
+
+</html>
