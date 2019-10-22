@@ -6,6 +6,12 @@ export default class Schedule {
 		this.Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 	}
 
+	setCurrentSubject({ Time }) {
+
+
+		// console.log(Time)
+	}
+
 	render = () => {
 		return `<div class="Schedule">
 					${this.Week.map((day, i) => (`

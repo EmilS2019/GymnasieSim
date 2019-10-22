@@ -21,11 +21,15 @@ export default class Time {
 
     timeTick(delay) {
         const clock = document.querySelector(".clock")
-        const event = new Event("clockTick")
+        const schedule = document.querySelector(".schedule")
+        const event = new Event("clockTick", {
+            time: this.Time
+        })
 
         setInterval(() => {
             this.Time.setMinutes(this.Time.getMinutes() + 1)
             clock.dispatchEvent(event)
+            schedule.dispatchEvent(event)
         }, delay);
     }
 }
