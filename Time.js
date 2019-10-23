@@ -1,7 +1,7 @@
 export default class Time {
     constructor() {
         const newDate = new Date()
-        newDate.setFullYear(2019, 7, 15)
+        newDate.setFullYear(2019, 7, 19)
         newDate.setHours(7)
         newDate.setMinutes(10)
         newDate.setSeconds(0)

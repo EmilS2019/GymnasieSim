@@ -1,28 +1,41 @@
 export default class Schedule {
-	//Week is an array of arrays.
-	//For example: [["hi", "hi2"], ["hi"]] would mean two on monday and one on Tuesday
+
 	constructor(Week) {
 		this.Week = Week
 		this.Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 	}
 
-	setCurrentSubject({ Time }) {
+	setCurrentSubject(Time) {
+		const date = Time.getTime()
+		const hour = date.getHours() - 8
+		const day = date.getDay()
+		const subjectID = `${this.Days[day - 1]}-${this.formatTime(hour)}`
 
+		if (this.currentSubject && this.currentSubject.id !== subjectID) {
+			try {
+				const subject = document.getElementById(subjectID)
+				this.currentSubject = subject
+				subject.classList.toggle("currentSubject")
 
-		// console.log(Time)
+			} catch (e) { null } //It only errors if there are no lessions at that time
+		}
+		else if (this.currentSubject === undefined) {
+			this.currentSubject = document.getElementById(subjectID)
+		}
 	}
 
-	render = () => {
+	formatTime = (j) => (`${8 + j}:00-${8 + j}:50`)
+
+	render() {
 		return `<div class="Schedule">
 					${this.Week.map((day, i) => (`
-					<div class="Schedule-Day">
+					<div class="Schedule-Day" id="${this.Days[i]}">
 						<h1>${this.Days[i]}</h1>
 
-				${day
-				.map((subject, i) => `<div>${subject.name}  
-									${8 + i}:00-${8 + i}:50
-									</div>
-					`)
+				${day.map((subject, j) => `<div id="${this.Days[i]}-${this.formatTime(j)}" value="hiii:-">  
+									${subject.name}
+									${this.formatTime(j)}
+									</div>`)
 
 				.join('')}						
 				</div>	`)).join('')}				

@@ -7,7 +7,7 @@ const time = new Time();
 (function () {
 	const clock = document.querySelector(".clock");
 	clock.innerHTML = time.render()
-	time.timeTick(500)
+	time.timeTick(50)
 	clock.addEventListener("clockTick", () => {
 		clock.innerHTML = time.render()
 	})
@@ -37,6 +37,7 @@ const time = new Time();
 	const fr = new Subject("Freud 2b")
 	const ln = new Subject("Lunch")
 
+	//For example: [["hi", "hi2"], ["hi"]] would mean two on monday and one on Tuesday
 	const schedule = new Schedule([
 		[bk, bk, fr, bk, ln, fr, bk],
 		[bk, bk],
