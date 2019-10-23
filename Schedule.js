@@ -2,6 +2,8 @@ export default class Schedule {
 
 	constructor(Week) {
 		this.Week = Week
+		this.currentSubject = document.createElement("div")
+		this.currentSubject.setAttribute("id", "null")
 		this.Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 	}
 
@@ -11,16 +13,17 @@ export default class Schedule {
 		const day = date.getDay()
 		const subjectID = `${this.Days[day - 1]}-${this.formatTime(hour)}`
 
-		if (this.currentSubject && this.currentSubject.id !== subjectID) {
-			try {
-				const subject = document.getElementById(subjectID)
+		if (this.currentSubject.id !== subjectID) {
+			const subject = document.getElementById(subjectID)
+			if (subject) {
+				this.currentSubject.classList.toggle("currentSubject")
 				this.currentSubject = subject
+				this.currentSubject.id = subject.id
 				subject.classList.toggle("currentSubject")
-
-			} catch (e) { null } //It only errors if there are no lessions at that time
-		}
-		else if (this.currentSubject === undefined) {
-			this.currentSubject = document.getElementById(subjectID)
+			}
+			else { //if no subject found aka end of day or before
+				this.currentSubject.classList.remove("currentSubject")
+			}
 		}
 	}
 
@@ -56,11 +59,16 @@ export class Subject {
 		if (newGrade === 0) {
 			console.warn("Grade can't be lowered")
 		}
-		if (newGrade === 6) {
+		if (newGrade === 5) {
 			console.warn("Grade can't be increased")
 		}
 		else {
 			this.grade = newGrade
 		}
+	}
+
+	returnGrade() {
+		const grades = ["F", "E", "D", "C", "B", "A"]
+		return grades[this.grade]
 	}
 }

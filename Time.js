@@ -3,7 +3,7 @@ export default class Time {
         const newDate = new Date()
         newDate.setFullYear(2019, 7, 19)
         newDate.setHours(7)
-        newDate.setMinutes(10)
+        newDate.setMinutes(45)
         newDate.setSeconds(0)
         this.Time = newDate
     }

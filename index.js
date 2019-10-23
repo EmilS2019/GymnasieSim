@@ -39,8 +39,8 @@ const time = new Time();
 
 	//For example: [["hi", "hi2"], ["hi"]] would mean two on monday and one on Tuesday
 	const schedule = new Schedule([
-		[bk, bk, fr, bk, ln, fr, bk],
-		[bk, bk],
+		[bk,],
+		[bk, bk, bk, fr, bk, ln, fr, bk],
 		[bk, fr],
 		[fr, bk],
 		[bk, fr]
@@ -52,4 +52,8 @@ const time = new Time();
 		schedule.setCurrentSubject(time)
 	})
 
+	const gradeList = document.querySelector(".gradeList")
+	gradeList.innerHTML = `
+	<p>${bk.name}: ${bk.grade}</p>
+	<p>${fr.name}: ${fr.grade}</p>`
 }());
