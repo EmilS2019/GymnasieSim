@@ -18,14 +18,17 @@ const time = new Time();
 (function () {
 	const computer = new Rescalor(1, 1.5, '.computer')
 	const barLine = new Rescalor(1, 1.5, '.barLine')
+	const bar = new Rescalor(1, 1.3, '.bar')
 
 	document.body.onkeyup = e => {
 		computer.rescale(0.2)
-		barLine.retranslate(-40)
+		barLine.retranslate(-5)
+		bar.rescale(0.01)
 	}
 	setInterval(() => {
 		computer.rescale(-0.1)
-		barLine.retranslate(30)
+		bar.rescale(-0.04)
+		barLine.retranslate(10)
 	}, 300)
 }());
 
@@ -61,12 +64,14 @@ const time = new Time();
 	}
 	renderGradeList()
 
+	//Grabs the current subject and compares it to the list of subjects
+	//If it's found, then if the player clicks spacebar, do stuff
 	const subjects = schedule.getSubjects()
 	document.body.onkeydown = e => {
 		const currentSub = schedule.currentSubject.innerText.split(/\s\d{1,2}:/)[0]
 		subjects.forEach(subject => {
 			if (subject.name === currentSub) {
-				subject.setGrade(1)
+				subject.changeGradeXP(1)
 			}
 		})
 		renderGradeList()

@@ -61,9 +61,14 @@ export class Subject {
 		this.name = name
 		//Do NOT set grade directly
 		this.grade = 0
+		this.gradeXP = 0
 	}
 
-	setGrade(change) {
+	changeGradeXP(n) {
+
+	}
+
+	changeGrade(change) {
 		let newGrade = this.grade + change
 
 		if (newGrade === 0) {

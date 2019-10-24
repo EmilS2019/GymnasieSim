@@ -25,11 +25,12 @@ export default class Time {
         const event = new Event("clockTick", {
             time: this.Time
         })
+        this.delay = delay
 
         setInterval(() => {
             this.Time.setMinutes(this.Time.getMinutes() + 1)
             clock.dispatchEvent(event)
             schedule.dispatchEvent(event)
-        }, delay);
+        }, this.delay);
     }
 }
