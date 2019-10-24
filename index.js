@@ -1,6 +1,7 @@
 import Rescalor from './Rescalor.js'
 import Schedule, { Subject } from './Schedule.js'
 import Time from './Time.js'
+import LetterBox from './LetterBox.js'
 
 //Set up clock and start time
 const time = new Time();
@@ -24,6 +25,8 @@ const time = new Time();
 		computer.rescale(0.2)
 		barLine.retranslate(-5)
 		bar.rescale(0.01)
+		const lett = new LetterBox(e.key, ".letterBoxes")
+		lett.render()
 	}
 	setInterval(() => {
 		computer.rescale(-0.1)
@@ -55,14 +58,14 @@ const time = new Time();
 		schedule.setCurrentSubject(time)
 	})
 
-	const gradeList = document.querySelector(".gradeList")
-
-	const renderGradeList = () => {
+	const renderGradeList = (bk, fr) => {
+		const gradeList = document.querySelector(".gradeList")
 		gradeList.innerHTML = `
 		<p>${bk.name}: ${bk.returnGrade()}</p>
 		<p>${fr.name}: ${fr.returnGrade()}</p>`
 	}
-	renderGradeList()
+
+	renderGradeList(bk, fr)
 
 	//Grabs the current subject and compares it to the list of subjects
 	//If it's found, then if the player clicks spacebar, do stuff
@@ -74,6 +77,11 @@ const time = new Time();
 				subject.changeGradeXP(1)
 			}
 		})
-		renderGradeList()
+		renderGradeList(bk, fr)
 	}
+
+
 }());
+
+
+

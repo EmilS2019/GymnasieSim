@@ -4,7 +4,7 @@ export default class Schedule {
 		this.Week = Week
 		this.currentSubject = document.createElement("div")
 		this.currentSubject.setAttribute("id", "null")
-		this.Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+		this.Days = ["Mondag", "Tisdag", "Onsdag", "Torsdag", "Fredag"]
 	}
 
 	getSubjects() {
@@ -33,6 +33,7 @@ export default class Schedule {
 			}
 			else { //if no subject found aka end of day or before
 				this.currentSubject.classList.remove("currentSubject")
+				this.currentSubject = document.createElement("div")
 			}
 		}
 	}
@@ -65,7 +66,12 @@ export class Subject {
 	}
 
 	changeGradeXP(n) {
+		this.gradeXP += n
 
+		if (this.gradeXP === (this.grade + 1) * 30) {
+			this.gradeXP = 0
+			this.changeGrade(1)
+		}
 	}
 
 	changeGrade(change) {

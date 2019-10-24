@@ -59,3 +59,18 @@ img {
 .clock {
     font-size: 50px;
 }
+
+.letterBox{
+    position:absolute;
+    top:500px;
+    left:100px;
+    font-size: 2rem;
+    border: black solid 2px;
+    padding:5px 18px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,00.2);
+}
+
+.letterBoxes{
+    position: absolute;
+    
+}
