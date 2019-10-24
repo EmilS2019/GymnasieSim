@@ -7,7 +7,7 @@ const time = new Time();
 (function () {
 	const clock = document.querySelector(".clock");
 	clock.innerHTML = time.render()
-	time.timeTick(50)
+	time.timeTick(100)
 	clock.addEventListener("clockTick", () => {
 		clock.innerHTML = time.render()
 	})
@@ -39,7 +39,7 @@ const time = new Time();
 
 	//For example: [["hi", "hi2"], ["hi"]] would mean two on monday and one on Tuesday
 	const schedule = new Schedule([
-		[bk,],
+		[bk, fr, bk],
 		[bk, bk, bk, fr, bk, ln, fr, bk],
 		[bk, fr],
 		[fr, bk],
@@ -53,7 +53,22 @@ const time = new Time();
 	})
 
 	const gradeList = document.querySelector(".gradeList")
-	gradeList.innerHTML = `
-	<p>${bk.name}: ${bk.grade}</p>
-	<p>${fr.name}: ${fr.grade}</p>`
+
+	const renderGradeList = () => {
+		gradeList.innerHTML = `
+		<p>${bk.name}: ${bk.returnGrade()}</p>
+		<p>${fr.name}: ${fr.returnGrade()}</p>`
+	}
+	renderGradeList()
+
+	const subjects = schedule.getSubjects()
+	document.body.onkeydown = e => {
+		const currentSub = schedule.currentSubject.innerText.split(/\s\d{1,2}:/)[0]
+		subjects.forEach(subject => {
+			if (subject.name === currentSub) {
+				subject.setGrade(1)
+			}
+		})
+		renderGradeList()
+	}
 }());

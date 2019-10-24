@@ -7,6 +7,16 @@ export default class Schedule {
 		this.Days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 	}
 
+	getSubjects() {
+		const newSet = []
+		this.Week.forEach(day => {
+			day.forEach(subject => {
+				if (!newSet.includes(subject)) newSet.push(subject)
+			})
+		});
+		return newSet
+	}
+
 	setCurrentSubject(Time) {
 		const date = Time.getTime()
 		const hour = date.getHours() - 8
@@ -59,7 +69,7 @@ export class Subject {
 		if (newGrade === 0) {
 			console.warn("Grade can't be lowered")
 		}
-		if (newGrade === 5) {
+		if (newGrade === 6) {
 			console.warn("Grade can't be increased")
 		}
 		else {
