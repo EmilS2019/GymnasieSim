@@ -36,15 +36,16 @@ const time = new Time();
 }());
 
 //Sets up the Schedule
+
 (function () {
 	const domSchedule = document.querySelector('.schedule')
 
-	const bk = new Subject("Betygskunskap")
-	const fr = new Subject("Freud 2b")
-	const ln = new Subject("Lunch")
+	var bk = new Subject("Betygskunskap")
+	var fr = new Subject("Freud 2b")
+	var ln = new Subject("Lunch");
 
 	//For example: [["hi", "hi2"], ["hi"]] would mean two on monday and one on Tuesday
-	const schedule = new Schedule([
+	var schedule = new Schedule([
 		[bk, fr, bk],
 		[bk, bk, bk, fr, bk, ln, fr, bk],
 		[bk, fr],
@@ -58,6 +59,10 @@ const time = new Time();
 		schedule.setCurrentSubject(time)
 	})
 
+}());
+
+//Adds the grading list
+(function () {
 	const renderGradeList = (bk, fr) => {
 		const gradeList = document.querySelector(".gradeList")
 		gradeList.innerHTML = `
@@ -79,8 +84,6 @@ const time = new Time();
 		})
 		renderGradeList(bk, fr)
 	}
-
-
 }());
 
 
