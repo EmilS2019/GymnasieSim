@@ -3,6 +3,7 @@ import Schedule, { Subject } from './Schedule.js'
 import Time from './Time.js'
 import LetterBox from './LetterBox.js'
 
+
 //Set up clock and start time
 const time = new Time();
 (function () {
@@ -22,11 +23,14 @@ const time = new Time();
 	const bar = new Rescalor(1, 1.3, '.bar')
 
 	document.body.onkeyup = e => {
-		computer.rescale(0.2)
-		barLine.retranslate(-5)
-		bar.rescale(0.01)
-		const lett = new LetterBox(e.key, ".letterBoxes")
-		lett.render()
+		console.log(schedule.currentSubject)
+		if (schedule.currentSubject !== document.createElement("div")) {
+			computer.rescale(0.2)
+			barLine.retranslate(-5)
+			bar.rescale(0.01)
+			const lett = new LetterBox(e.key, ".letterBoxes")
+			lett.render()
+		}
 	}
 	setInterval(() => {
 		computer.rescale(-0.1)
@@ -36,22 +40,30 @@ const time = new Time();
 }());
 
 //Sets up the Schedule
+const bk = new Subject("Betygskunskap")
+const fr = new Subject("Freud 2b")
+const ln = new Subject("Lunch")
+const vo = new Subject("Viljanologi 1")
+const ma = new Subject("Mattematik 8c")
+const sm = new Subject("Smör")
+const mo = new Subject("Mobil Surfande 2b")
+const sc = new Subject("Schematik 2");
+
+const schedule = new Schedule([
+	[bk, bk, vo, vo, ma, ln, ma, sm],
+	[bk, bk, sm, ma, mo, ln, fr, sm],
+	[sc, mo, sm, fr, bk, ln, sm, bk],
+	[mo, ma, sm, fr, sc, ln, sc, mo],
+	[sm, sm, mo, fr, bk, ln, fr, ma],
+]);
 
 (function () {
 	const domSchedule = document.querySelector('.schedule')
 
-	var bk = new Subject("Betygskunskap")
-	var fr = new Subject("Freud 2b")
-	var ln = new Subject("Lunch");
+
 
 	//For example: [["hi", "hi2"], ["hi"]] would mean two on monday and one on Tuesday
-	var schedule = new Schedule([
-		[bk, fr, bk],
-		[bk, bk, bk, fr, bk, ln, fr, bk],
-		[bk, fr],
-		[fr, bk],
-		[bk, fr]
-	])
+
 
 	domSchedule.innerHTML = schedule.render()
 
@@ -67,7 +79,12 @@ const time = new Time();
 		const gradeList = document.querySelector(".gradeList")
 		gradeList.innerHTML = `
 		<p>${bk.name}: ${bk.returnGrade()}</p>
-		<p>${fr.name}: ${fr.returnGrade()}</p>`
+		<p>${fr.name}: ${fr.returnGrade()}</p>
+		<p>${vo.name}: ${vo.returnGrade()}</p>
+		<p>${ma.name}: ${ma.returnGrade()}</p>
+		<p>${sm.name}: ${sm.returnGrade()}</p>
+		<p>${mo.name}: ${mo.returnGrade()}</p>
+		<p>${sc.name}: ${sc.returnGrade()}</p>`
 	}
 
 	renderGradeList(bk, fr)

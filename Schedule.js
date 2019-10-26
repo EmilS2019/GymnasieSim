@@ -46,7 +46,7 @@ export default class Schedule {
 					<div class="Schedule-Day" id="${this.Days[i]}">
 						<h1>${this.Days[i]}</h1>
 
-				${day.map((subject, j) => `<div id="${this.Days[i]}-${this.formatTime(j)}" value="hiii:-">  
+				${day.map((subject, j) => `<div id="${this.Days[i]}-${this.formatTime(j)}">  
 									${subject.name}
 									${this.formatTime(j)}
 									</div>`)
